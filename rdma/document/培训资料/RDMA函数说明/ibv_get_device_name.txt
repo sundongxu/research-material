@@ -1,0 +1,29 @@
+IBV_GET_DEVICE_NAME(3)  Libibverbs Programmer's Manual  IBV_GET_DEVICE_NAME(3)
+
+
+
+NAME
+       ibv_get_device_name - get an InfiniBand device's name
+
+SYNOPSIS
+       #include <infiniband/verbs.h>
+
+       const char *ibv_get_device_name(struct ibv_device *device);
+
+DESCRIPTION
+       ibv_get_device_name() returns a human-readable name associated with the
+       InfiniBand device device.
+
+RETURN VALUE
+       ibv_get_device_name() returns a pointer to the device name, or NULL  if
+       the request fails.
+
+SEE ALSO
+       ibv_get_device_list(3), ibv_get_device_guid(3), ibv_open_device(3)
+
+AUTHORS
+       Dotan Barak <dotanb@mellanox.co.il>
+
+
+
+libibverbs                        2006-10-31            IBV_GET_DEVICE_NAME(3)

@@ -1,0 +1,27 @@
+RDMA_ACK_CM_EVENT(3)     Librdmacm Programmer's Manual    RDMA_ACK_CM_EVENT(3)
+
+
+
+NAME
+       rdma_ack_cm_event - Free a communication event.
+
+SYNOPSIS
+       #include <rdma/rdma_cma.h>
+
+       int rdma_ack_cm_event (struct rdma_cm_event *event);
+
+ARGUMENTS
+       event       Event to be released.
+
+DESCRIPTION
+       All  events  which are allocated by rdma_get_cm_event must be released,
+       there should be a one-to-one correspondence between successful gets and
+       acks.   This call frees the event structure and any memory that it ref-
+       erences.
+
+SEE ALSO
+       rdma_get_cm_event(3), rdma_destroy_id(3)
+
+
+
+librdmacm                         2007-05-15              RDMA_ACK_CM_EVENT(3)

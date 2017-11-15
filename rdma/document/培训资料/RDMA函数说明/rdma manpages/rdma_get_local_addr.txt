@@ -1,0 +1,27 @@
+RDMA_GET_LOCAL_ADDR(3)   Librdmacm Programmer's Manual  RDMA_GET_LOCAL_ADDR(3)
+
+
+
+NAME
+       rdma_get_local_addr   -  Returns  the  local  IP  address  of  a  bound
+       rdma_cm_id.
+
+SYNOPSIS
+       #include <rdma/rdma_cma.h>
+
+       struct sockaddr * rdma_get_local_addr (struct rdma_cm_id *id);
+
+ARGUMENTS
+       id          RDMA identifier.
+
+DESCRIPTION
+       Returns the local IP address for an rdma_cm_id that has been bound to a
+       local device.
+
+SEE ALSO
+       rdma_bind_addr(3),      rdma_resolve_addr(3),     rdma_get_src_port(3),
+       rdma_get_dst_port(3), rdma_get_peer_addr(3)
+
+
+
+librdmacm                         2007-05-15            RDMA_GET_LOCAL_ADDR(3)

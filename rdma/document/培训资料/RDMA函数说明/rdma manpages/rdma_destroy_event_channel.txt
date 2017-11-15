@@ -1,0 +1,30 @@
+RDMA_DESTROY_EVENT_CHANNELibrdmacm Programmer's MRDMA_DESTROY_EVENT_CHANNEL(3)
+
+
+
+NAME
+       rdma_destroy_event_channel - Close an event communication channel.
+
+SYNOPSIS
+       #include <rdma/rdma_cma.h>
+
+       void rdma_destroy_event_channel (struct rdma_event_channel *channel);
+
+ARGUMENTS
+       channel     The communication channel to destroy.
+
+DESCRIPTION
+       Release  all  resources associated with an event channel and closes the
+       associated file descriptor.
+
+NOTES
+       All rdma_cm_id's associated with the event channel must  be  destroyed,
+       and all returned events must be acked before calling this function.
+
+SEE ALSO
+       rdma_create_event_channel(3),                     rdma_get_cm_event(3),
+       rdma_ack_cm_event(3)
+
+
+
+librdmacm                         2007-05-15     RDMA_DESTROY_EVENT_CHANNEL(3)

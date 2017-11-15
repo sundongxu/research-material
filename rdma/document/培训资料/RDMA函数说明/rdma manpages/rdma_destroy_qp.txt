@@ -1,0 +1,28 @@
+RDMA_DESTROY_QP(3)       Librdmacm Programmer's Manual      RDMA_DESTROY_QP(3)
+
+
+
+NAME
+       rdma_destroy_qp - Deallocate a QP.
+
+SYNOPSIS
+       #include <rdma/rdma_cma.h>
+
+       void rdma_destroy_qp (struct rdma_cm_id *id);
+
+ARGUMENTS
+       id          RDMA identifier.
+
+DESCRIPTION
+       Destroy a QP allocated on the rdma_cm_id.
+
+NOTES
+       Users must destroy any QP associated with an rdma_cm_id before destroy-
+       ing the ID.
+
+SEE ALSO
+       rdma_create_qp(3), rdma_destroy_id(3), ibv_destroy_qp(3)
+
+
+
+librdmacm                         2007-05-15                RDMA_DESTROY_QP(3)

@@ -1,0 +1,24 @@
+RDMA_EVENT_STR(3)        Librdmacm Programmer's Manual       RDMA_EVENT_STR(3)
+
+
+
+NAME
+       rdma_event_str - Returns a string representation of an rdma cm event.
+
+SYNOPSIS
+       #include <rdma/rdma_cma.h>
+
+       char * rdma_event_str (enumrdma_cm_event_type event );"
+
+ARGUMENTS
+       event       Asynchronous event.
+
+DESCRIPTION
+       Returns a string representation of an asynchronous event.
+
+SEE ALSO
+       rdma_get_cm_event(3)
+
+
+
+librdmacm                         2007-05-15                 RDMA_EVENT_STR(3)

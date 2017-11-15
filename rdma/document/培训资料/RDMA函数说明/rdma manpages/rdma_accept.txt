@@ -1,0 +1,109 @@
+RDMA_ACCEPT(3)           Librdmacm Programmer's Manual          RDMA_ACCEPT(3)
+
+
+
+NAME
+       rdma_accept - Called to accept a connection request.
+
+SYNOPSIS
+       #include <rdma/rdma_cma.h>
+
+       int   rdma_accept   (struct   rdma_cm_id  *id,  struct  rdma_conn_param
+       *conn_param);
+
+ARGUMENTS
+       id          Connection identifier associated with the request.
+
+       conn_param  Information needed to establish the connection.   See  CON-
+                   NECTION PROPERTIES below for details.
+
+DESCRIPTION
+       Called  from the listening side to accept a connection or datagram ser-
+       vice lookup request.
+
+NOTES
+       Unlike the socket accept routine, rdma_accept is not called on  a  lis-
+       tening  rdma_cm_id.  Instead, after calling rdma_listen, the user waits
+       for  an  RDMA_CM_EVENT_CONNECT_REQUEST  event  to  occur.    Connection
+       request  events  give the user a newly created rdma_cm_id, similar to a
+       new socket, but the rdma_cm_id is bound  to  a  specific  RDMA  device.
+       rdma_accept is called on the new rdma_cm_id.
+
+CONNECTION PROPERTIES
+       The  following  properties  are used to configure the communication and
+       specified by the conn_param parameter when accepting  a  connection  or
+       datagram  communication  request.  Users should use the rdma_conn_param
+       values reported in the connection request event to determine  appropri-
+       ate  values  for  these fields when accepting.  Users may reference the
+       rdma_conn_param structure in the connection event directly, or can ref-
+       erence  their  own structure.  If the rdma_conn_param structure from an
+       event is referenced, the event must not be acked until after this  call
+       returns.
+
+       private_data
+              References  a  user-controlled data buffer.  The contents of the
+              buffer are copied and transparently passed to the remote side as
+              part  of the communication request.  May be NULL if private_data
+              is not required.
+
+       private_data_len
+              Specifies the size of the  user-controlled  data  buffer.   Note
+              that the actual amount of data transferred to the remote side is
+              transport dependent and may be larger than that requested.
+
+       responder_resources
+              The maximum number of outstanding RDMA read  and  atomic  opera-
+              tions  that  the  local  side  will accept from the remote side.
+              Applies only to RDMA_PS_TCP.  This value must be  less  than  or
+              equal  to the local RDMA device attribute max_qp_rd_atom and the
+              responder_resources value reported in the connect request event.
+
+       initiator_depth
+              The  maximum  number  of outstanding RDMA read and atomic opera-
+              tions that the local side will have to the remote side.  Applies
+              only  to  RDMA_PS_TCP.  This value must be less than or equal to
+              the local RDMA device attribute max_qp_init_rd_atom and the ini-
+              tiator_depth value reported in the connect request event.
+
+       flow_control
+              Specifies  if hardware flow control is available.  This value is
+              exchanged with the remote peer and is not used to configure  the
+              QP.  Applies only to RDMA_PS_TCP.
+
+       retry_count
+              This value is ignored.
+
+       rnr_retry_count
+              The  maximum  number  of  times  that  a send operation from the
+              remote peer should be retried on a connection after receiving  a
+              receiver not ready (RNR) error.  RNR errors are generated when a
+              send request arrives before a buffer has been posted to  receive
+              the incoming data.  Applies only to RDMA_PS_TCP.
+
+       srq    Specifies  if  the  QP associated with the connection is using a
+              shared receive queue.  This field is ignored by the library if a
+              QP  has  been  created  on  the  rdma_cm_id.   Applies  only  to
+              RDMA_PS_TCP.
+
+       qp_num Specifies the QP number associated with  the  connection.   This
+              field  is ignored by the library if a QP has been created on the
+              rdma_cm_id.
+
+INFINIBAND SPECIFIC
+       In addition to the connection properties defined above, InfiniBand  QPs
+       are configured with minimum RNR NAK timer and local ACK timeout values.
+       The minimum RNR NAK timer value is set to 0, for a  delay  of  655  ms.
+       The  local  ACK  timeout is calculated based on the packet lifetime and
+       local HCA ACK delay.  The packet lifetime is determined by the  Infini-
+       Band Subnet Administrator and is part of the route (path record) infor-
+       mation obtained by the active side of  the  connection.   The  HCA  ACK
+       delay is a property of the locally used HCA.
+
+       The RNR retry count is a 3-bit value.
+
+SEE ALSO
+       rdma_listen(3), rdma_reject(3), rdma_get_cm_event(3)
+
+
+
+librdmacm                         2007-10-31                    RDMA_ACCEPT(3)

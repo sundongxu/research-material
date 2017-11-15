@@ -1,0 +1,54 @@
+IBV_QUERY_PORT(3)       Libibverbs Programmer's Manual       IBV_QUERY_PORT(3)
+
+
+
+NAME
+       ibv_query_port - query an InfiniBand port's attributes
+
+SYNOPSIS
+       #include <infiniband/verbs.h>
+
+       int ibv_query_port(struct ibv_context *context, uint8_t port_num,
+                          struct ibv_port_attr *port_attr);
+
+DESCRIPTION
+       ibv_query_port()  returns  the  attributes  of port port_num for device
+       context context through the pointer port_attr.  The argument  port_attr
+       is an ibv_port_attr struct, as defined in <infiniband/verbs.h>.
+
+       struct ibv_port_attr {
+               enum ibv_port_state     state;          /* Logical port state */
+               enum ibv_mtu            max_mtu;        /* Max MTU supported by port */
+               enum ibv_mtu            active_mtu;     /* Actual MTU */
+               int                     gid_tbl_len;    /* Length of source GID table */
+               uint32_t                port_cap_flags; /* Port capabilities */
+               uint32_t                max_msg_sz;     /* Maximum message size */
+               uint32_t                bad_pkey_cntr;  /* Bad P_Key counter */
+               uint32_t                qkey_viol_cntr; /* Q_Key violation counter */
+               uint16_t                pkey_tbl_len;   /* Length of partition table */
+               uint16_t                lid;            /* Base port LID */
+               uint16_t                sm_lid;         /* SM LID */
+               uint8_t                 lmc;            /* LMC of LID */
+               uint8_t                 max_vl_num;     /* Maximum number of VLs */
+               uint8_t                 sm_sl;          /* SM service level */
+               uint8_t                 subnet_timeout; /* Subnet propagation delay */
+               uint8_t                 init_type_reply;/* Type of initialization performed by SM */
+               uint8_t                 active_width;   /* Currently active link width */
+               uint8_t                 active_speed;   /* Currently active link speed */
+               uint8_t                 phys_state;     /* Physical port state */
+       };
+
+
+RETURN VALUE
+       ibv_query_port() returns 0 on success, or the value of errno on failure
+       (which indicates the failure reason).
+
+SEE ALSO
+       ibv_create_qp(3), ibv_destroy_qp(3), ibv_query_qp(3), ibv_create_ah(3)
+
+AUTHORS
+       Dotan Barak <dotanb@mellanox.co.il>
+
+
+
+libibverbs                        2006-10-31                 IBV_QUERY_PORT(3)

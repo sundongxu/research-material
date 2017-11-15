@@ -1,0 +1,36 @@
+RDMA_RESOLVE_ROUTE(3)    Librdmacm Programmer's Manual   RDMA_RESOLVE_ROUTE(3)
+
+
+
+NAME
+       rdma_resolve_route  - Resolve the route information needed to establish
+       a connection.
+
+SYNOPSIS
+       #include <rdma/rdma_cma.h>
+
+       int rdma_resolve_route (struct rdma_cm_id *id, int timeout_ms);
+
+ARGUMENTS
+       id          RDMA identifier.
+
+       timeout_ms  Time to wait for resolution to complete.
+
+DESCRIPTION
+       Resolves an RDMA route to the destination address in order to establish
+       a  connection.  The destination address must have already been resolved
+       by calling rdma_resolve_addr.
+
+NOTES
+       This is called on  the  client  side  of  a  connection  after  calling
+       rdma_resolve_addr, but before calling rdma_connect.
+
+INFINIBAND SPECIFIC
+       This call obtains a path record that is used by the connection.
+
+SEE ALSO
+       rdma_resolve_addr(3), rdma_connect(3), rdma_get_cm_event(3)
+
+
+
+librdmacm                         2007-10-31             RDMA_RESOLVE_ROUTE(3)

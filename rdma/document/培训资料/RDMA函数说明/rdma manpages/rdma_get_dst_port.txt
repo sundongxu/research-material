@@ -1,0 +1,27 @@
+RDMA_GET_DST_PORT(3)     Librdmacm Programmer's Manual    RDMA_GET_DST_PORT(3)
+
+
+
+NAME
+       rdma_get_dst_port   -  Returns  the  remote  port  number  of  a  bound
+       rdma_cm_id.
+
+SYNOPSIS
+       #include <rdma/rdma_cma.h>
+
+       uint16_t rdma_get_dst_port (struct rdma_cm_id *id);
+
+ARGUMENTS
+       id          RDMA identifier.
+
+DESCRIPTION
+       Returns the remote port number for an rdma_cm_id that has been bound to
+       a remote address.
+
+SEE ALSO
+       rdma_connect(3),          rdma_accept(3),         rdma_get_cm_event(3),
+       rdma_get_src_port(3), rdma_get_local_addr(3), rdma_get_peer_addr(3)
+
+
+
+librdmacm                         2007-05-15              RDMA_GET_DST_PORT(3)

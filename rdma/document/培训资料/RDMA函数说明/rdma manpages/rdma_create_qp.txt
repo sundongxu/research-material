@@ -1,0 +1,40 @@
+RDMA_CREATE_QP(3)        Librdmacm Programmer's Manual       RDMA_CREATE_QP(3)
+
+
+
+NAME
+       rdma_create_qp - Allocate a QP.
+
+SYNOPSIS
+       #include <rdma/rdma_cma.h>
+
+       int  rdma_create_qp  (struct  rdma_cm_id *id, struct ibv_pd *pd, struct
+       ibv_qp_init_attr *qp_init_attr);
+
+ARGUMENTS
+       id          RDMA identifier.
+
+       pd          protection domain for the QP.
+
+       qp_init_attr
+                   initial QP attributes.
+
+DESCRIPTION
+       Allocate a QP associated with the specified rdma_cm_id  and  transition
+       it for sending and receiving.
+
+NOTES
+       The rdma_cm_id must be bound to a local RDMA device before calling this
+       function, and the protection domain must be for that same device.   QPs
+       allocated to an rdma_cm_id are automatically transitioned by the librd-
+       macm through their states.  After being allocated, the QP will be ready
+       to  handle  posting  of receives.  If the QP is unconnected, it will be
+       ready to post sends.
+
+SEE ALSO
+       rdma_bind_addr(3), rdma_resolve_addr(3),  rdma_destroy_qp(3),  ibv_cre-
+       ate_qp(3), ibv_modify_qp(3)
+
+
+
+librdmacm                         2007-05-15                 RDMA_CREATE_QP(3)

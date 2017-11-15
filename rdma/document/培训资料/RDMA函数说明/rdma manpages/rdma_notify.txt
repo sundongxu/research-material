@@ -1,0 +1,38 @@
+RDMA_NOTIFY(3)           Librdmacm Programmer's Manual          RDMA_NOTIFY(3)
+
+
+
+NAME
+       rdma_notify - Notifies the librdmacm of an asynchronous event.
+
+SYNOPSIS
+       #include <rdma/rdma_cma.h>
+
+       int rdma_notify (struct rdma_cm_id *id, enum ibv_event_type event);
+
+ARGUMENTS
+       id          RDMA identifier.
+
+       event       Asynchronous event.
+
+DESCRIPTION
+       Used  to notify the librdmacm of asynchronous events that have occurred
+       on a QP associated with the rdma_cm_id.
+
+NOTES
+       Asynchronous events that occur on a QP are reported through the  user's
+       device  event handler.  This routine is used to notify the librdmacm of
+       communication events.  In most cases, use of this routine is not neces-
+       sary,  however if connection establishment is done out of band (such as
+       done through Infiniband), it's possible to receive data on a QP that is
+       not  yet considered connected.  This routine forces the connection into
+       an established state in this case in order to handle the rare situation
+       where  the  connection  never  forms on its own.  Events that should be
+       reported to the CM are: IB_EVENT_COMM_EST.
+
+SEE ALSO
+       rdma_connect(3), rdma_accept(3), rdma_listen(3)
+
+
+
+librdmacm                         2007-05-15                    RDMA_NOTIFY(3)

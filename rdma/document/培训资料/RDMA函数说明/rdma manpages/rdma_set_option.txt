@@ -1,0 +1,38 @@
+RDMA_SET_OPTION(3)       Librdmacm Programmer's Manual      RDMA_SET_OPTION(3)
+
+
+
+NAME
+       rdma_set_option - Set communication options for an rdma_cm_id.
+
+SYNOPSIS
+       #include <rdma/rdma_cma.h>
+
+       int  rdma_set_option  (struct  rdma_cm_id  *id, int level, int optname,
+       void *optval, size_t optlen);
+
+ARGUMENTS
+       id          RDMA identifier.
+
+       level       Protocol level of the option to set.
+
+       optname     Name of the option, relative to the level, to set.
+
+       optval      Reference to the option data.  The data is dependent on the
+                   level and optname.
+
+       optlen      The size of the %optval buffer.
+
+DESCRIPTION
+       Sets  communication  options  for  an rdma_cm_id.  This call is used to
+       override the default system settings.
+
+NOTES
+       Option details may be found in the relevent header files.
+
+SEE ALSO
+       rdma_create_id(3)
+
+
+
+librdmacm                         2007-08-06                RDMA_SET_OPTION(3)

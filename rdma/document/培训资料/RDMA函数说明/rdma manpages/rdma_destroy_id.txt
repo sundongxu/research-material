@@ -1,0 +1,29 @@
+RDMA_DESTROY_ID(3)       Librdmacm Programmer's Manual      RDMA_DESTROY_ID(3)
+
+
+
+NAME
+       rdma_destroy_id - Release a communication identifier.
+
+SYNOPSIS
+       #include <rdma/rdma_cma.h>
+
+       int rdma_destroy_id (struct rdma_cm_id *id);
+
+ARGUMENTS
+       id          The communication identifier to destroy.
+
+DESCRIPTION
+       Destroys  the  specified  rdma_cm_id  and cancels any outstanding asyn-
+       chronous operation.
+
+NOTES
+       Users must free any associated QP with the  rdma_cm_id  before  calling
+       this routine and ack an related events.
+
+SEE ALSO
+       rdma_create_id(3), rdma_destroy_qp(3), rdma_ack_cm_event(3)
+
+
+
+librdmacm                         2007-05-15                RDMA_DESTROY_ID(3)
